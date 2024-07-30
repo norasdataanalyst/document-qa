@@ -34,8 +34,7 @@ def authentification():
 
 # Page d'accueil
 def accueil():
-    st.title("Accueil")
-    st.write("Bienvenue sur la page d'accueil!")
+    st.title("Bienvenue sur ma page")
     st.image("https://media.giphy.com/media/5yLgocuQi3aB8lDO9S8/giphy.gif")
 
 # Page de photos de chat
