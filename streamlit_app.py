@@ -39,7 +39,7 @@ def accueil():
 
 # Page de photos de chat
 def photos_chat():
-    st.title("Bienvenue dans l'album de mon chat 😺")
+    st.title("Bienvenue dans l'album de mes animaux 😺")
     col1, col2, col3 = st.columns(3)
     with col1:
         st.image("https://static.streamlit.io/examples/cat.jpg")
