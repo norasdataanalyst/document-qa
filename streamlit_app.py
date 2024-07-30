@@ -20,10 +20,11 @@ def authentification():
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     if st.button("Login"):
-        user = df[(df['name'] == Noras) & (df['password'] == "1234")]
+        user = df[(df['name'] == username) & (df['password'] == password)]
         if not user.empty:
             st.session_state['logged_in'] = True
             st.session_state['username'] = username
+            st.experimental_rerun()  # Rafraîchir la page après la connexion
         else:
             st.error("Les champs username et mot de passe doivent être remplis")
 
@@ -58,6 +59,7 @@ def menu():
 def logout():
     st.session_state['logged_in'] = False
     st.session_state['username'] = None
+    st.experimental_rerun()  # Rafraîchir la page après la déconnexion
 
 # Main
 if 'logged_in' not in st.session_state:
