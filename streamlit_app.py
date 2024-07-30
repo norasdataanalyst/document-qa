@@ -44,7 +44,7 @@ def photos_chat():
     with col1:
         st.image("https://www.marketingdirecto.com/wp-content/uploads/2016/02/gato-300-300x300.jpg")
     with col2:
-        st.image("https://static.streamlit.io/examples/dog.jpg")
+        st.image("https://th.bing.com/th/id/OIP.25pe7HmxLCPm3kEL6lUgZQHaFj?pid=ImgDet&w=161&h=120&c=7")
     with col3:
         st.image("https://static.streamlit.io/examples/owl.jpg")
 
