@@ -46,7 +46,7 @@ def photos_chat():
     with col2:
         st.image("https://th.bing.com/th/id/OIP.25pe7HmxLCPm3kEL6lUgZQHaFj?pid=ImgDet&w=161&h=120&c=7")
     with col3:
-        st.image("https://static.streamlit.io/examples/owl.jpg")
+        st.image("https://th.bing.com/th/id/OIP.HnOT17hiorH2SG1tJmozcQAAAA?pid=ImgDet&w=161&h=120&c=7")
 
 # Menu dans la sidebar
 def menu():
