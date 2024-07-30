@@ -2,7 +2,17 @@ import streamlit as st
 import pandas as pd
 
 # Lecture des données de comptes depuis un fichier CSV
-df = pd.read_csv('comptes.csv')
+file_path = 'comptes.csv'
+if os.path.exists(file_path):
+    df = pd.read_csv(file_path)
+    st.write(df.columns)  # Affiche les noms de colonnes pour vérification
+else:
+    st.error(f"Le fichier {file_path} n'existe pas.")
+
+# Vérifiez et renommez les colonnes si nécessaire
+expected_columns = ['name', 'password', 'email', 'failed_login_attempts', 'logged_in', 'role']
+if list(df.columns) != expected_columns:
+    df.columns = expected_columns
 
 # Page d'authentification
 def authentification():
