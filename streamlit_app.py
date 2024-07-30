@@ -24,7 +24,7 @@ def authentification():
         if not user.empty:
             st.session_state['logged_in'] = True
             st.session_state['username'] = username
-            st.experimental_rerun()  # Rafraîchir la page après la connexion
+            st.experimental_set_query_params(logged_in=True)  # Déclenche un rerun en modifiant les paramètres de la requête
         else:
             st.error("Les champs username et mot de passe doivent être remplis")
 
@@ -50,7 +50,7 @@ def menu():
         if st.button("Déconnexion"):
             st.session_state['logged_in'] = False
             st.session_state['username'] = None
-            st.experimental_rerun()  # Rafraîchir la page après la déconnexion
+            st.experimental_set_query_params(logged_in=False)  # Déclenche un rerun en modifiant les paramètres de la requête
         st.write(f"Bienvenue {st.session_state['username']}")
         selection = st.radio("Navigation", ["Accueil", "Les photos de mon chat"])
         if selection == "Accueil":
@@ -61,6 +61,10 @@ def menu():
 # Main
 if 'logged_in' not in st.session_state:
     st.session_state['logged_in'] = False
+
+query_params = st.experimental_get_query_params()
+if 'logged_in' in query_params:
+    st.session_state['logged_in'] = query_params['logged_in'][0] == 'True'
 
 if st.session_state['logged_in']:
     menu()
