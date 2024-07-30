@@ -6,7 +6,6 @@ import os
 file_path = 'comptes.csv'
 if os.path.exists(file_path):
     df = pd.read_csv(file_path)
-    st.write(df.columns)  # Affiche les noms de colonnes pour vérification
 else:
     st.error(f"Le fichier {file_path} n'existe pas.")
 
@@ -17,38 +16,48 @@ if list(df.columns) != expected_columns:
 
 # Page d'authentification
 def authentification():
-    st.title("Page d'authentification")
-    username = st.text_input("Nom d'utilisateur")
-    password = st.text_input("Mot de passe", type="password")
-    if st.button("Se connecter"):
+    st.title("Login")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+    if st.button("Login"):
         user = df[(df['name'] == username) & (df['password'] == password)]
         if not user.empty:
             st.session_state['logged_in'] = True
             st.session_state['username'] = username
         else:
-            st.error("Nom d'utilisateur ou mot de passe incorrect")
+            st.error("Les champs username et mot de passe doivent être remplis")
 
 # Page d'accueil
 def accueil():
-    st.title(f"Bienvenue {st.session_state['username']}!")
-    st.write("Voici l'album de photos de mon chat :")
+    st.title("Bienvenue sur ma page")
+    st.image("https://media.giphy.com/media/3o6ZsXhV7vG9U7mGDe/giphy.gif", use_column_width=True)
+
+# Page de photos de chat
+def photos_chat():
+    st.title("Bienvenue dans l'album de mon chat 😺")
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.header("Chat 1")
-        st.image("https://static.streamlit.io/examples/cat.jpg")
+        st.image("https://static.streamlit.io/examples/cat0.jpg")
     with col2:
-        st.header("Chat 2")
-        st.image("https://static.streamlit.io/examples/cat.jpg")
+        st.image("https://static.streamlit.io/examples/cat1.jpg")
     with col3:
-        st.header("Chat 3")
-        st.image("https://static.streamlit.io/examples/cat.jpg")
+        st.image("https://static.streamlit.io/examples/cat2.jpg")
 
 # Menu dans la sidebar
 def menu():
     with st.sidebar:
+        st.button("Déconnexion", key="logout", on_click=logout)
         st.write(f"Bienvenue {st.session_state['username']}")
-        if st.button("Déconnexion"):
-            st.session_state['logged_in'] = False
+        selection = st.radio("Navigation", ["Accueil", "Les photos de mon chat"])
+        if selection == "Accueil":
+            accueil()
+        elif selection == "Les photos de mon chat":
+            photos_chat()
+
+# Déconnexion
+def logout():
+    st.session_state['logged_in'] = False
+    st.session_state['username'] = None
 
 # Main
 if 'logged_in' not in st.session_state:
@@ -56,6 +65,5 @@ if 'logged_in' not in st.session_state:
 
 if st.session_state['logged_in']:
     menu()
-    accueil()
 else:
     authentification()
