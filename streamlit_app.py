@@ -17,8 +17,8 @@ if list(df.columns) != expected_columns:
 # Page d'authentification
 def authentification():
     st.title("Login")
-    username = st.text_input("Noras")
-    password = st.text_input("1234", type="password")
+    username = st.text_input("username")
+    password = st.text_input("password", type="password")
     if st.button("Login"):
         user = df[(df['name'] == username) & (df['password'] == password)]
         if not user.empty:
