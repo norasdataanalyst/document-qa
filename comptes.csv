@@ -1,0 +1,2 @@
+name, password, email, failed_login_attemps, logged_in, role
+Noras, 1234, noras@noras.fr, 5, Noras, Admin
