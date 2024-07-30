@@ -38,11 +38,11 @@ def photos_chat():
     st.title("Bienvenue dans l'album de mon chat 😺")
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.image("https://static.streamlit.io/examples/cat.jpg")
+        st.image("https://static.streamlit.io/examples/cat0.jpg")
     with col2:
-        st.image("https://static.streamlit.io/examples/dog.jpg")
+        st.image("https://static.streamlit.io/examples/cat1.jpg")
     with col3:
-        st.image("https://static.streamlit.io/examples/owl.jpg")
+        st.image("https://static.streamlit.io/examples/cat2.jpg")
 
 # Menu dans la sidebar
 def menu():
@@ -51,8 +51,8 @@ def menu():
             st.session_state['logged_in'] = False
             st.session_state['username'] = None
             st.experimental_set_query_params(logged_in=False)  # Déclenche un rerun en modifiant les paramètres de la requête
-        st.write(f"Bienvenue {st.session_state['username']}")
-        selection = st.radio("Navigation", ["Accueil", "Les photos de mon chat"])
+        st.write(f"Bienvenue *{st.session_state['username']}*")
+        selection = st.radio("Navigation", ["Accueil", "Les photos de mon chat"], index=0, key="menu")
         if selection == "Accueil":
             accueil()
         elif selection == "Les photos de mon chat":
