@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import os
 
 # Lecture des données de comptes depuis un fichier CSV
 file_path = 'comptes.csv'
