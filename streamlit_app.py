@@ -38,11 +38,11 @@ def photos_chat():
     st.title("Bienvenue dans l'album de mon chat 😺")
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.image("https://static.streamlit.io/examples/cat0.jpg")
+        st.image("https://static.streamlit.io/examples/cat.jpg")
     with col2:
-        st.image("https://static.streamlit.io/examples/cat1.jpg")
+        st.image("https://static.streamlit.io/examples/dog.jpg")
     with col3:
-        st.image("https://static.streamlit.io/examples/cat2.jpg")
+        st.image("https://static.streamlit.io/examples/owl.jpg")
 
 # Menu dans la sidebar
 def menu():
