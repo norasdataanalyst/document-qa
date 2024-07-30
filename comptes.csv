@@ -1,2 +1,2 @@
 name,password,email,failed_login_attempts,logged_in,role
-Admin,AdminMDP,noras@noras.fr,0,False,Admin
+root,rootMDP,noras@noras.fr,0,False,Admin
