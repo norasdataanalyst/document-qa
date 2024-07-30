@@ -17,8 +17,8 @@ if list(df.columns) != expected_columns:
 # Page d'authentification
 def authentification():
     st.title("Login")
-    username = st.text_input("username")
-    password = st.text_input("password", type="password")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
     if st.button("Login"):
         user = df[(df['name'] == username) & (df['password'] == password)]
         if not user.empty:
@@ -47,19 +47,16 @@ def photos_chat():
 # Menu dans la sidebar
 def menu():
     with st.sidebar:
-        st.button("Déconnexion", key="logout", on_click=logout)
+        if st.button("Déconnexion"):
+            st.session_state['logged_in'] = False
+            st.session_state['username'] = None
+            st.experimental_rerun()  # Rafraîchir la page après la déconnexion
         st.write(f"Bienvenue {st.session_state['username']}")
         selection = st.radio("Navigation", ["Accueil", "Les photos de mon chat"])
         if selection == "Accueil":
             accueil()
         elif selection == "Les photos de mon chat":
             photos_chat()
-
-# Déconnexion
-def logout():
-    st.session_state['logged_in'] = False
-    st.session_state['username'] = None
-    st.experimental_rerun()  # Rafraîchir la page après la déconnexion
 
 # Main
 if 'logged_in' not in st.session_state:
